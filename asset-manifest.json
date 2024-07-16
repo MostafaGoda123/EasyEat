@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/EasyEat/static/css/main.47570a54.css",
+    "main.js": "/EasyEat/static/js/main.23036e76.js",
+    "static/js/453.40578864.chunk.js": "/EasyEat/static/js/453.40578864.chunk.js",
+    "static/media/backgroundBanner.png": "/EasyEat/static/media/backgroundBanner.6478f1d37eff88424fe6.png",
+    "static/media/card.png": "/EasyEat/static/media/card.6478f1d37eff88424fe6.png",
+    "static/media/FilterCategoryItem.png": "/EasyEat/static/media/FilterCategoryItem.ab1f4faffe2799f435f8.png",
+    "static/media/breadCrumb.png": "/EasyEat/static/media/breadCrumb.ab1f4faffe2799f435f8.png",
+    "static/media/background.png": "/EasyEat/static/media/background.d065bab349fd8927f452.png",
+    "index.html": "/EasyEat/index.html",
+    "main.47570a54.css.map": "/EasyEat/static/css/main.47570a54.css.map",
+    "main.23036e76.js.map": "/EasyEat/static/js/main.23036e76.js.map",
+    "453.40578864.chunk.js.map": "/EasyEat/static/js/453.40578864.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47570a54.css",
+    "static/js/main.23036e76.js"
+  ]
+}
