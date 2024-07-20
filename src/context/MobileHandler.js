@@ -11,8 +11,7 @@ function MobileHandlerProvider({children}) {
 
    useEffect(() => {
       window.matchMedia("(max-width:768px)").addEventListener("change",isMobileHandler)
-      setIsMobile(window.matchMedia("(max-width:768px)"))
-      window.addEventListener("load",setIsMobile(false))
+      setIsMobile(window.matchMedia("(max-width:768px)").matches)
    }, [])
 
 
