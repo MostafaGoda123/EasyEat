@@ -1,60 +1,46 @@
-import React, { useContext, useState } from 'react'
-import { FaBars, FaHeart } from 'react-icons/fa'
-import { FaCartShopping, FaXmark } from 'react-icons/fa6'
-import {  NavLink, useLocation } from 'react-router-dom'
-import logo from '../images/logo.png'
-import { MobileHandlerContext} from '../context/MobileHandler'
 import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { AiFillTag, AiOutlineMenu, AiOutlineSearch } from 'react-icons/ai'
+import { BsFillSaveFill } from 'react-icons/bs'
+import { FaShoppingCart, FaUserFriends, FaWallet } from 'react-icons/fa'
+import { IoClose } from 'react-icons/io5'
+import { MdFavorite, MdHelp } from 'react-icons/md'
+import { TbTruckDelivery } from 'react-icons/tb'
 
 const Navbar = () => {
-   let { isMobile } = useContext(MobileHandlerContext)
    const [openMenu, setOpenMenu] = useState(false)
-   let location = useLocation().pathname;
    return (
-      <nav className='z-50 absolute top-8 left-0 w-full flex justify-between items-center' style={{padding : '0 10%'}}>
-         <img src={logo} alt="" />
-         {isMobile ? 
-            <>
-               <FaBars onClick={()=>setOpenMenu(true)} className='text-3xl'/>
-               {openMenu&&
-               <motion.div 
-                  initial={{opacity : 0 , x : -300 , y : -600}}
-                  whileInView={{opacity : 1 , x : 0 , y : 0}}
-                  transition={{duration : 0.4}}
-                  className='p-5 fixed top-0 left-0 h-full w-full bg-[#2d2d2d] ' style={{padding:'0 8%'}}>
-               <div className='flex justify-between items-center py-5'>
-                  <img src={logo} alt="" />
-                  <FaXmark onClick={()=>setOpenMenu(false)} className='text-3xl text-white cursor-pointer duration-300 hover:text-red-700 ' />
-               </div>
-               <ul className='flex flex-col justify-center items-center h-96 mt-28 text-2xl gap-8'>
-                  <NavLink className={`hover:opacity-100 ${location==='/'? "opacity-100" : "opacity-50"}`} to={'/'}>Home</NavLink>
-                  <NavLink className={`hover:opacity-100 ${location==='/about'? "opacity-100" : "opacity-50"}`} to={'/about'}>About</NavLink>
-                  <NavLink className={`hover:opacity-100 ${location==='/shop'? "opacity-100" : "opacity-50"}`} to={'/shop'}>Shop</NavLink>
-                  <NavLink className={`hover:opacity-100 ${location==='/contact'? "opacity-100" : "opacity-50"}`} to={'/contact'}>Contact</NavLink>
-               </ul>
-               </motion.div>}
-            </>
-         :
-            <>
-            <ul className='flex gap-8'>
-               <NavLink className={`hover:opacity-100 ${location==='/'? "opacity-100" : "opacity-50"}`} to={'/'}>Home</NavLink>
-               <NavLink className={`hover:opacity-100 ${location==='/about'? "opacity-100" : "opacity-50"}`} to={'/about'}>About</NavLink>
-               <NavLink className={`hover:opacity-100 ${location==='/shop'? "opacity-100" : "opacity-50"}`} to={'/shop'}>Shop</NavLink>
-               <NavLink className={`hover:opacity-100 ${location==='/contact'? "opacity-100" : "opacity-50"}`} to={'/contact'}>Contact</NavLink>
-               </ul>
-            <div className='flex gap-4'>
-               <div className="w-9 h-9 flex justify-center items-center rounded-full text-xl border cursor-pointer border-white relative hover:bg-red-700 duration-300">
-                  <FaHeart />
-                  <span className='absolute top-[-5px] right-[-5px] bg-red-600 rounded-full p-1 h-5 w-5 flex justify-center items-center text-sm'>0</span> 
-               </div>
-               <div className="w-9 h-9 flex justify-center items-center rounded-full text-xl border cursor-pointer border-white relative hover:bg-red-700 duration-300">
-                  <FaCartShopping />
-                  <span className='absolute top-[-5px] right-[-5px] bg-red-600 rounded-full p-1 h-5 w-5 flex justify-center items-center text-sm'>0</span> 
-               </div>
+      <nav className='container mx-auto h-[10vh] flex items-center justify-between'>
+         <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center text-2xl">
+               <AiOutlineMenu className='cursor-pointer' onClick={()=>setOpenMenu(true)} />
+               <h1>Best <span className="font-bold">Eats</span></h1>
             </div>
-            </>
-         }
-         
+            <div className='bg-neutral-200 rounded-3xl sm:flex hidden items-center'>
+               <p className='px-3 py-1 text-white rounded-3xl bg-black'>Delivery</p>
+               <p className='px-3 py-1'>Pickup</p>
+            </div>
+         </div>
+         <div className="inp relative lg:w-96 md:w-60 sm:w-40 h-8 rounded-3xl bg-neutral-200">
+            <AiOutlineSearch className='absolute top-1/2 -translate-y-1/2 left-2' />
+            <input type="text" placeholder='Search focus ...' className='w-full h-full ps-8 pe-2 bg-transparent outline-none border-none' />
+         </div>
+         <button className="flex gap-2 items-center bg-black text-white"><FaShoppingCart />Cart</button>
+         {openMenu && 
+         <section className='duration-300 fixed left-0 top-0 w-full h-[100vh] bg-[rgba(0,0,0,0.8)] z-50'>
+            <motion.ul className='bg-white h-full w-52 p-5 flex flex-col gap-5'
+            initial={{x:'-100%',y:-200}}
+            whileInView={{x:0 , y:0 ,transitionDuration:5000}}>
+               <li className='flex justify-between'><span>Best <span className="font-semibold">Eats</span></span><IoClose onClick={()=>setOpenMenu(false)} className='text-3xl cursor-pointer bg-neutral-200 rounded-full p-1 hover:bg-red-600 hover:text-white duration-300' /></li>
+               <li className='flex gap-2 cursor-pointer items-center text-xl' onClick={()=>setOpenMenu(false)}><TbTruckDelivery className='w-8' />Orders</li>
+               <li className='flex gap-2 cursor-pointer items-center text-xl' onClick={()=>setOpenMenu(false)}><MdFavorite className='w-8' />Favorite</li>
+               <li className='flex gap-2 cursor-pointer items-center text-xl' onClick={()=>setOpenMenu(false)}><FaWallet className='w-8' />Wallet</li>
+               <li className='flex gap-2 cursor-pointer items-center text-xl' onClick={()=>setOpenMenu(false)}><MdHelp className='w-8' />Help</li>
+               <li className='flex gap-2 cursor-pointer items-center text-xl' onClick={()=>setOpenMenu(false)}><AiFillTag className='w-8' />Promotions</li>
+               <li className='flex gap-2 cursor-pointer items-center text-xl' onClick={()=>setOpenMenu(false)}><BsFillSaveFill className='w-8' />Best Ones</li>
+               <li className='flex gap-2 cursor-pointer items-center text-xl' onClick={()=>setOpenMenu(false)}><FaUserFriends className='w-8' />Invite Friends</li>
+            </motion.ul>
+         </section>}
       </nav>
    )
 }
